@@ -18,16 +18,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.4
 
-      - name: Create ENV 1
+      - name: Create ENV
         run: 'touch .env; echo "VITE_API_URL: https://weatherapi-com.p.rapidapi.com" > .env; echo "VITE_API_HOST: weatherapi-com.p.rapidapi.com" >> .env; echo "VITE_API_KEY: ${{ secrets.VITE_API_KEY }}" >> .env;'
 
       - name: Node JS
         uses: actions/setup-node@v2
         with:
           node-version: '16'          
-
-      - name: Create ENV
-        run: 'touch .env; echo "VITE_API_URL: https://weatherapi-com.p.rapidapi.com" > .env; echo "VITE_API_HOST: weatherapi-com.p.rapidapi.com" >> .env; echo "VITE_API_KEY: ${{ secrets.VITE_API_KEY }}" >> .env;'
         
       - name: NPM Install
         run: npm install
