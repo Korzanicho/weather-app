@@ -1,0 +1,52 @@
+name: Deploy to atthost server
+on:
+  push:
+    branches:
+      - "master"
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      BASE_PATH: weather-app-vue3
+
+    name: Build And Deploy
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+
+      - name: Create ENV 1
+        run: 'touch .env; echo "VITE_API_URL: https://weatherapi-com.p.rapidapi.com" > .env; echo "VITE_API_HOST: weatherapi-com.p.rapidapi.com" >> .env; echo "VITE_API_KEY: ${{ secrets.VITE_API_KEY }}" >> .env;'
+
+      - name: Node JS
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'          
+
+      - name: Create ENV
+        run: 'touch .env; echo "VITE_API_URL: https://weatherapi-com.p.rapidapi.com" > .env; echo "VITE_API_HOST: weatherapi-com.p.rapidapi.com" >> .env; echo "VITE_API_KEY: ${{ secrets.VITE_API_KEY }}" >> .env;'
+        
+      - name: NPM Install
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: ls -lah
+
+      - name: Test 2
+        run: cat .env
+
+      - name: Deploy
+        uses: kostya-ten/ssh-server-deploy@v4
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          port: 6022
+          username: ${{ secrets.REMOTE_USER }}
+          password: ${{ secrets.REMOTE_PASSWORD }}
+          scp_source: ./dist
+          scp_target: ./websites/weather-vue
