@@ -4,9 +4,11 @@ Basic weather app in Vue3
 
 Live: [weather.webkor.pl](http://weather.webkor.pl)
 
-<img src="https://i.imgur.com/3R5mny9.png" alt="app view" />
-<img src="https://i.imgur.com/zt7BkVw.png" alt="app search form" />
-<img src="https://i.imgur.com/o11FAMO.png" alt="app view" />
+<div>
+    <img align=top src="https://i.imgur.com/3R5mny9.png" alt="app view" width="250px" style="margin-bottom: 15px; "/>
+    <img align=top src="https://i.imgur.com/zt7BkVw.png" alt="app search form" width="250px" />
+    <img align=top src="https://i.imgur.com/o11FAMO.png" alt="app view" width="250px" />
+</div>
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
